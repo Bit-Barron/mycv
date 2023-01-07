@@ -12,7 +12,7 @@ export class UsersService {
   }
 
   findOne(id: number) {
-    return this.repo.findOne(id);
+    return this.repo.findOneBy({ id });
   }
 
   find() {}
