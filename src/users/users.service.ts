@@ -19,11 +19,11 @@ export class UsersService {
     return this.repo.findBy({ email });
   }
 
-  update(id: number, newEmail: string, newPassword: string) {
+  update(id: number, attrs: Partial<User>) {
     
   }
 
-  remove() {
-
-  }
+  remove() {}
 }
+
+
