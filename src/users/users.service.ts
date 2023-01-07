@@ -15,9 +15,15 @@ export class UsersService {
     return this.repo.findOneBy({ id });
   }
 
-  find() {}
+  find(email: string) {
+    return this.repo.findBy({ email });
+  }
 
-  update() {}
+  update(id: number, newEmail: string, newPassword: string) {
+    
+  }
 
-  remove() {}
+  remove() {
+
+  }
 }
