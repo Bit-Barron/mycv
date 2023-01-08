@@ -26,7 +26,7 @@ export class UsersController {
 
   @Get('/whoami')
   whoAmI(@Session() session: any) {
-    return this.usersService.findOne(session);
+    return this.usersService.findOne(session.userId);
   }
 
   @Post('/signout')
