@@ -16,6 +16,8 @@ import { UpdateUserDto } from './dtos/update-user.dto';
 import { UsersService } from './users.service';
 import { SerialiceInterceptor } from 'src/interceptors/serialize.interceptor';
 import { AuthService } from './auth.service';
+import { currentUser } from './decorators/current-user.decorate';
+import { User } from './user.entity';
 
 @Controller('auth')
 export class UsersController {
@@ -25,9 +27,14 @@ export class UsersController {
   ) {}
 
   @Get('/whoami')
-  whoAmI(@Session() session: any) {
-    return this.usersService.findOne(session.userId);
+  whoAmI(@currentUser() user: string) {
+    return user;
   }
+
+  // @Get('/whoami')
+  // whoAmI(@Session() session: any) {
+  //   return this.usersService.findOne(session.userId);
+  // }
 
   @Post('/signout')
   signOut(@Session() session: any) {
