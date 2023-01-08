@@ -8,4 +8,6 @@ it('can create an instance of auth service', async () => {
   }).compile();
 
   const service = module.get(AuthService);
+
+  expect(service).toBeDefined();
 });
