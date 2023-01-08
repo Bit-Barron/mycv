@@ -30,6 +30,11 @@ export class UsersController {
     return session;
   }
 
+  @Get("/colors")
+  getColor(@Session() session: any) {
+    return session.color;
+  }
+
   @Post('/signup')
   createUser(@Body() body: CreateUserDto) {
     return this.authService.signup(body.email, body.password);
