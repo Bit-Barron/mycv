@@ -7,6 +7,7 @@ import {
   Query,
   Delete,
   Param,
+  UseGuards,
   NotFoundException,
   Session,
   UseInterceptors,
@@ -18,6 +19,7 @@ import { SerialiceInterceptor } from 'src/interceptors/serialize.interceptor';
 import { AuthService } from './auth.service';
 import { currentUser } from './decorators/current-user.decorate';
 import { User } from './user.entity';
+import { AuthGuard } from 'src/guards/auth.guard';
 @Controller('auth')
 export class UsersController {
   constructor(
@@ -26,6 +28,7 @@ export class UsersController {
   ) {}
 
   @Get('/whoami')
+  @UseGuards(AuthGuard)
   whoAmI(@currentUser() user: User) {
     return user;
   }
