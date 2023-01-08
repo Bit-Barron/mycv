@@ -8,6 +8,8 @@ import {
   Delete,
   Param,
   NotFoundException,
+  UseInterceptors,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
@@ -35,6 +37,7 @@ export class UsersController {
   findAllUsers(@Query('email') email: string) {
     return this.usersService.find(email);
   }
+  @UseInterceptors(ClassSerializerInterceptor)
   @Delete('/:id')
   removeUser(@Param('id') id: string) {
     return this.usersService.remove(parseInt(id));
