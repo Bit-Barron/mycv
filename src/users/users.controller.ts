@@ -8,8 +8,8 @@ import {
   Delete,
   Param,
   NotFoundException,
-  UseInterceptors,
   Session,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
@@ -18,7 +18,6 @@ import { SerialiceInterceptor } from 'src/interceptors/serialize.interceptor';
 import { AuthService } from './auth.service';
 import { currentUser } from './decorators/current-user.decorate';
 import { User } from './user.entity';
-
 @Controller('auth')
 export class UsersController {
   constructor(
@@ -27,7 +26,7 @@ export class UsersController {
   ) {}
 
   @Get('/whoami')
-  whoAmI(@currentUser() user: string) {
+  whoAmI(@currentUser() user: User) {
     return user;
   }
 
