@@ -13,14 +13,25 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath:`.env.${process.env.NODE_ENV}`,
+      envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'database.sqlite',
-      entities: [User, Report],
-      synchronize: true,
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => {
+        return {
+          type: 'sqlite',
+          synchronize: true,
+          entities: [User, Report],
+          database: config.get<string>('DB_NAME'),
+        };
+      },
     }),
+    // TypeOrmModule.forRoot({
+    //   type: 'sqlite',
+    //   database: 'database.sqlite',
+    //   entities: [User, Report],
+    //   synchronize: true,
+    // }),
     UsersModule,
     ReportsModule,
   ],
