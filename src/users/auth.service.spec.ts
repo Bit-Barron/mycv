@@ -21,5 +21,5 @@ it('can create an instance of auth service', async () => {
 
   const service = module.get(AuthService);
 
-  expect(service).toBeDefined();
+  expect(service).toBeDefined(); 
 });
