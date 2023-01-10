@@ -12,6 +12,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { currentUser } from 'src/users/decorators/current-user.decorate';
 import { User } from 'src/users/user.entity';
 import { ApprovedReportsDto } from './dtos/approved-report.dto';
+import { AdminGuard } from 'src/guards/admin.guard';
 @Controller('reports')
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
@@ -23,6 +24,7 @@ export class ReportsController {
   }
 
   @Patch('/:id')
+  @UseGuards(AdminGuard)
   approvedReport(@Param('id') id: string, @Body() body: ApprovedReportsDto) {
     return this.reportsService.changeApproval(id, body.approved);
   }
