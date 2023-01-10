@@ -11,6 +11,6 @@ export class ReportsController {
   @Post()
   @UseGuards(AuthGuard)
   createReport(@Body() body: CreateReportDto, @currentUser() user: User) {
-    return this.reportsService.create(body);
+    return this.reportsService.create(body, user);
   }
 }
