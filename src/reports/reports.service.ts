@@ -15,5 +15,5 @@ export class ReportsService {
     const report = this.repo.create(reportDto);
 
     return this.repo.save(report);
-}
+  }
 }
